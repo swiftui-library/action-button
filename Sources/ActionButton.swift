@@ -8,9 +8,15 @@ public struct ActionButton: View {
 
     // MARK: Lifecycle
 
-    public init(state: Binding<ActionButtonState>, onTap: @escaping TapHandler) {
+    public init(
+        state: Binding<ActionButtonState>,
+        onTap: @escaping TapHandler,
+        backgroundColor: Color,
+        foregroundColor: Color = .white) {
 
         _state = state
+        self.foregroundColor = foregroundColor
+        self.backgroundColor = backgroundColor
         tapHandler = onTap
     }
 
@@ -37,13 +43,13 @@ public struct ActionButton: View {
                 Text(state.title)
             }
             .font(.system(size: 14, weight: .medium))
-            .foregroundColor(.white)
+            .foregroundColor(foregroundColor)
 
             Spacer()
         }
         .frame(height: 22)
         .padding(8)
-        .background(backgroundColor)
+        .background(background)
         .animation(.fastFade, value: state.enabled)
         .cornerRadius(8)
         .scaleEffect(scale)
@@ -62,28 +68,35 @@ public struct ActionButton: View {
             .onEnded { _ in
 
                 self.isPressing = false
-                tapHandler()
+
+                switch state {
+
+                case .enabled: tapHandler()
+                default: break
+                }
             }
     }
-    
+
     var scale: CGFloat {
-        
+
         switch state {
-        
+
         case .enabled: return isPressing ? 0.95 : 1
         default: return 1
         }
     }
 
-    var backgroundColor: Color {
+    var background: Color {
 
-        state.enabled ? Color.red : Color.gray
+        state.enabled ? backgroundColor : Color.gray
     }
 
     // MARK: Private
 
     @State private var isPressing = false
     private var tapHandler: TapHandler
+    private var backgroundColor: Color
+    private var foregroundColor: Color
 }
 
 // MARK: - ActionButton_Previews
@@ -94,6 +107,6 @@ struct ActionButton_Previews: PreviewProvider {
 
         ActionButton(state: .constant(.enabled(.init(
             title: "New Draft",
-            systemImage: "plus.circle"))), onTap: {})
+            systemImage: "plus.circle"))), onTap: {}, backgroundColor: .red)
     }
 }
