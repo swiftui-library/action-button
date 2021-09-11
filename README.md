@@ -2,6 +2,8 @@
 
 `Button` alternative providing built-in states for `.enabled`, `.disabled`, and `.loading`.
 
+https://user-images.githubusercontent.com/8763719/132947434-86b066fb-81e6-4d94-b029-74d71cd60319.mov
+
 ## How to Use
 
 1. Import `ActionButton`
