@@ -44,7 +44,7 @@ private func loadSomething() {
     }
 }
 ```
-In our example, we use a delay to simply change the state variable `actionButtonState`. The view responds accordingly. k
+In our example, we use a delay to simply change the state variable `actionButtonState`. The view responds accordingly.
 
 ## Configuration
 
