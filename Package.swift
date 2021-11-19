@@ -23,8 +23,5 @@ let package = Package(
             name: "ActionButton",
             dependencies: [],
             path: "Sources"),
-        .testTarget(
-            name: "ActionButtonTests",
-            dependencies: ["ActionButton"]),
     ]
 )

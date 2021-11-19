@@ -105,8 +105,12 @@ struct ActionButton_Previews: PreviewProvider {
 
     static var previews: some View {
 
-        ActionButton(state: .constant(.enabled(.init(
-            title: "New Draft",
-            systemImage: "plus.circle"))), onTap: {}, backgroundColor: .red)
+        ActionButton(
+            state: .constant(.enabled(
+                title: "New Draft",
+                systemImage: "plus.circle")),
+            onTap: {},
+            backgroundColor: .red
+        )
     }
 }

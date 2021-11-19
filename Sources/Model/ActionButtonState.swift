@@ -1,26 +1,18 @@
 public enum ActionButtonState {
 
-    case enabled(ActionButtonModel)
-    case disabled(ActionButtonModel)
-    case loading(ActionButtonModel)
+    case enabled(title: String, systemImage: String)
+    case disabled(title: String, systemImage: String)
+    case loading(title: String, systemImage: String)
 
     // MARK: Internal
 
     var title: String {
 
         switch self {
-
-        case let .enabled(content):
-
-            return content.title
-
-        case let .disabled(content):
-
-            return content.title
-
-        case let .loading(content):
-
-            return content.title
+            
+        case .enabled(let title, _), .disabled(let title, _), .loading(let title, _):
+            
+            return title
         }
     }
 
@@ -28,17 +20,9 @@ public enum ActionButtonState {
 
         switch self {
 
-        case let .enabled(content):
+        case .enabled(_, let systemImage), .disabled(_, let systemImage), .loading(_, let systemImage):
 
-            return content.systemImage
-
-        case let .disabled(content):
-
-            return content.systemImage
-
-        case let .loading(content):
-
-            return content.systemImage
+            return systemImage
         }
     }
 
